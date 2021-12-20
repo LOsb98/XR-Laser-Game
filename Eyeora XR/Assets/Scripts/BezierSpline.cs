@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/// <summary>
+/// Spline class
+/// </summary>
 public class BezierSpline : MonoBehaviour
 {
     private bool _loop;

@@ -14,6 +14,11 @@ public class SplineWalker : MonoBehaviour
 
     private bool _goingForward = true;
 
+    /// <summary>
+    /// Used to set up a newly spawned object so it follows the correct path, and decide its speed
+    /// </summary>
+    /// <param name="newSpline">The spline for the object to follow</param>
+    /// <param name="durationToCompleteTrack">How long it takes the object to reach the end of the path</param>
     public void Initialize(BezierSpline newSpline, float durationToCompleteTrack)
     {
         _spline = newSpline;
@@ -23,6 +28,9 @@ public class SplineWalker : MonoBehaviour
 
     private void Update()
     {
+        //Object currently reaches the end of the path in a set time, but the path can potentially vary in length
+        //Might introduce inconsistency, possible way to measure line length and adjust accordingly?
+
         if (_goingForward)
         {
             _progress += Time.deltaTime / _duration;
