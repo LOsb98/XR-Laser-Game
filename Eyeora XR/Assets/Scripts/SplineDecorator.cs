@@ -12,7 +12,7 @@ public class SplineDecorator : MonoBehaviour
 
     [SerializeField] private Transform[] _items;
 
-    private List<GameObject> _currentPathObjects;
+    [SerializeField] private List<GameObject> _currentPathObjects = new List<GameObject>();
 
     private void Awake()
     {
@@ -25,18 +25,22 @@ public class SplineDecorator : MonoBehaviour
 
         foreach (GameObject pathObject in _currentPathObjects)
         {
-            if (pathObject)
-            {
-                //Using DestroyImmediate since we also want to be able to call this in the editor
-                DestroyImmediate(pathObject);
-            }
+            //Using DestroyImmediate since we also want to be able to call this in the editor
+            DestroyImmediate(pathObject);
         }
 
         _currentPathObjects.Clear();
+
+        if (_currentPathObjects != null)
+        {
+
+        }
     }
 
     public void DrawNewPath()
     {
+        ClearOldPath();
+
         if (_frequency <= 0 || _items == null || _items.Length == 0)
         {
             return;

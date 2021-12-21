@@ -91,8 +91,8 @@ public class BezierSpline : MonoBehaviour
         _points[index] = point;
         EnforceMode(index);
 
-        GetComponent<SplineDecorator>().ClearOldPath();
-        GetComponent<SplineDecorator>().DrawNewPath();
+        SplineDecorator decorator = GetComponent<SplineDecorator>();
+        decorator.DrawNewPath();
     }
 
     public void RandomizePoints()
@@ -115,14 +115,14 @@ public class BezierSpline : MonoBehaviour
             }
             else
             {
-                //Set final control point
-                Vector3 finalPointPos = new Vector3(_maxXPosition + 2, 0, 0);
-                Debug.Log(finalPointPos);
+                //Set final control point to consistent position
+                Vector3 finalPointPos = new Vector3(_maxXPosition + 2, 0, 4);
                 SetControlPoint(i, finalPointPos);
             }
         }
 
-        GetComponent<SplineDecorator>().DrawNewPath();
+        SplineDecorator decorator = GetComponent<SplineDecorator>();
+        decorator.DrawNewPath();
     }
 
     public BezierControlPointMode GetControlPointMode (int index)
@@ -166,8 +166,6 @@ public class BezierSpline : MonoBehaviour
         };
 
         SplineDecorator decorator = GetComponent<SplineDecorator>();
-
-        decorator.ClearOldPath();
         decorator.DrawNewPath();
     }
 
