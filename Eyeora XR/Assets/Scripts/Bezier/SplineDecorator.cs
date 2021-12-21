@@ -30,11 +30,6 @@ public class SplineDecorator : MonoBehaviour
         }
 
         _currentPathObjects.Clear();
-
-        if (_currentPathObjects != null)
-        {
-
-        }
     }
 
     public void DrawNewPath()

@@ -39,6 +39,8 @@ public class SplineWalker : MonoBehaviour
             {
                 if (_mode == SplineWalkerMode.Once)
                 {
+                    //Want the walker object to take care of its own destruction
+                    //Want to keep each one as decoupled as possible
                     GameManager.Instance.RemainingLives--;
                     Debug.Log("Object reached end of path");
                     Destroy(gameObject);
