@@ -54,9 +54,9 @@ public class WalkerController : MonoBehaviour
     {
         if (hitColour == Colour)
         {
-            Destroy(gameObject);
+            GameManager.Instance.PlayerDestroyedObject();
 
-            GameManager.Instance.Score++;
+            Destroy(gameObject);
         }
     }
 }

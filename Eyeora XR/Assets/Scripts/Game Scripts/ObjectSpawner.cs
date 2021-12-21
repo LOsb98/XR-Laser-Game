@@ -13,35 +13,36 @@ public class ObjectSpawner : MonoBehaviour
      * - Spawn multiple tracks for player to keep track of (maybe best as a separate mode?)
      * - Player has to match object colour AND shape to destroy them (two sets of buttons?)
      */
-    [SerializeField] private int _currentStage;
 
     [SerializeField] private BezierSpline _splinePath;
 
     [SerializeField] private GameObject _objectPrefab;
 
-    [SerializeField] private float _startingObjectSpawnDelay;
-
-    [SerializeField] private float _startingObjectSpeed;
-
     private float _objectSpawnDelay;
+
+    private float _objectSpawnTimer;
 
     private float _objectSpeed;
 
-    private void Awake()
+    public void InitializeObjectSpawner(float newObjectSpawnDelay, float newObjectSpeed)
     {
-        ResetObjectSpawner();
+        _objectSpawnDelay = newObjectSpawnDelay;
+
+        _objectSpawnTimer = _objectSpawnDelay;
+
+        _objectSpeed = newObjectSpeed;
     }
 
     private void Update()
     {
-        if (_objectSpawnDelay > 0)
+        if (_objectSpawnTimer > 0)
         {
-            _objectSpawnDelay -= Time.deltaTime;
+            _objectSpawnTimer -= Time.deltaTime;
         }
         else
         {
             //Could keep spawn delay persistent between levels (gradually decrease) OR reset between levels and decrease as more shapes are destroyed
-            _objectSpawnDelay = _startingObjectSpawnDelay;
+            _objectSpawnTimer = _objectSpawnDelay;
 
             SpawnNewObject();
         }
@@ -59,15 +60,14 @@ public class ObjectSpawner : MonoBehaviour
         newObjectData.InitializeRandomColour();
     }
 
-    /// <summary>
-    /// Reset object spawner delay and spawned object speed
-    /// </summary>
-    private void ResetObjectSpawner()
+    public void ClearObjects()
     {
-        //Might need to make this method public to call from a game manager?
-
-        _objectSpawnDelay = _startingObjectSpawnDelay;
-
-        _objectSpeed = _startingObjectSpeed;
+        //Object pooling would be worth looking at for this situation
+        //Lots of the same object being instantiated and destroyed, better not to actually create and destroy them so frequently
+        //Also makes getting rid of all objects on failure/success simpler
+        foreach (GameObject activeWalkerObject in GameObject.FindGameObjectsWithTag("Path Object"))
+        {
+            Destroy(activeWalkerObject);
+        }
     }
 }
