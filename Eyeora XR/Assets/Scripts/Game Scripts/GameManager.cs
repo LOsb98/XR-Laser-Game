@@ -27,6 +27,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        Score = 0;
+
+        RemainingLives = _startingLives;
+    }
+
     private int _score;
     public int Score
     {
@@ -37,7 +44,7 @@ public class GameManager : MonoBehaviour
         set
         {
             _score = value;
-            //Show updated score on UI
+            _scoreText.text = $"Score: {_score}";
         }
     }
 
@@ -60,7 +67,7 @@ public class GameManager : MonoBehaviour
         set
         {
             _remainingLives = value;
-            //Update UI
+            _livesText.text = $"Lives: {_remainingLives}";
         }
     }
 
