@@ -39,8 +39,9 @@ public class SplineWalker : MonoBehaviour
             {
                 if (_mode == SplineWalkerMode.Once)
                 {
-                    Destroy(gameObject);
                     GameManager.Instance.RemainingLives--;
+                    Debug.Log("Object reached end of path");
+                    Destroy(gameObject);
                 }
                 else if (_mode == SplineWalkerMode.Loop)
                 {
