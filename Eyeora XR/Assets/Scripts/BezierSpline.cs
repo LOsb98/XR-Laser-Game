@@ -8,6 +8,10 @@ using System;
 /// </summary>
 public class BezierSpline : MonoBehaviour
 {
+    [SerializeField] private float _maxXPosition = 10;
+    [SerializeField] private float _maxYPosition = 10;
+    [SerializeField] private float _maxZPosition = 5;
+
     private bool _loop;
 
     public bool Loop
@@ -86,6 +90,34 @@ public class BezierSpline : MonoBehaviour
         }
         _points[index] = point;
         EnforceMode(index);
+    }
+
+    public void RandomizePoints()
+    {
+        //Setting each point to a random value
+
+        //Don't do this to the first and last points
+        for (int i = 1; i < _points.Length; i++)
+        {
+            float xPos = UnityEngine.Random.Range(0, _maxXPosition);
+            float yPos = UnityEngine.Random.Range(0, _maxYPosition);
+            float zPos = UnityEngine.Random.Range(-_maxZPosition, _maxZPosition);
+
+            Vector3 newPosition = new Vector3(xPos, yPos, zPos);
+
+            if (i != _points.Length - 1)
+            {
+                //Set other control points
+                SetControlPoint(i, newPosition);
+            }
+            else
+            {
+                //Set final control point
+                Vector3 finalPointPos = new Vector3(_maxXPosition, 0, 0);
+                Debug.Log(finalPointPos);
+                SetControlPoint(i, finalPointPos);
+            }
+        }
     }
 
     public BezierControlPointMode GetControlPointMode (int index)

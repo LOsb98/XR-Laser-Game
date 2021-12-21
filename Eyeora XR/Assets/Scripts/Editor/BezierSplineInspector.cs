@@ -82,6 +82,13 @@ public class BezierCurveInspector : Editor
             _spline.AddCurve();
             EditorUtility.SetDirty(_spline);
         }
+
+        if (GUILayout.Button("Randomize Points"))
+        {
+            Undo.RecordObject(_spline, "Randomized Points");
+            _spline.RandomizePoints();
+            EditorUtility.SetDirty(_spline);
+        }
     }
 
     private void DrawSelectedPointInspector()
