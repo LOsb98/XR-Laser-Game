@@ -53,8 +53,10 @@ public class ObjectSpawner : MonoBehaviour
 
         //Is there a way to do this without GetComponent?
         SplineWalker newObjectScript = newObject.GetComponent<SplineWalker>();
-
         newObjectScript.Initialize(_splinePath, _objectSpeed);
+
+        WalkerController newObjectData = newObject.GetComponent<WalkerController>();
+        newObjectData.InitializeRandomColour();
     }
 
     /// <summary>
