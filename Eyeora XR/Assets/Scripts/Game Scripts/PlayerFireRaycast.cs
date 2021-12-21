@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerFireRaycast : MonoBehaviour
 {
+    [SerializeField] private Transform _cameraTransform;
+
     [SerializeField] private LayerMask _layersToHit;
 
     [SerializeField] private Color _purple;
@@ -12,8 +14,10 @@ public class PlayerFireRaycast : MonoBehaviour
     [SerializeField] private Color _green;
 
     [SerializeField] private Image _crosshairImage;
-    
-    private WalkerColourMode _laserColour
+
+    private WalkerColourMode _laserColour;
+
+    public  WalkerColourMode LaserColour
     {
         get
         {
@@ -60,11 +64,11 @@ public class PlayerFireRaycast : MonoBehaviour
     {
         RaycastHit laserRay;
 
-        if (Physics.Raycast(transform.position, transform.forward, out laserRay, 9999, _layersToHit))
+        if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out laserRay, 9999, _layersToHit))
         {
             Transform hitObject = laserRay.transform;
 
-            hitObject.GetComponent<WalkerController>().CheckColour(_laserColour);
+            hitObject.GetComponent<WalkerController>().CheckColour(LaserColour);
         }
     }
 
@@ -74,6 +78,6 @@ public class PlayerFireRaycast : MonoBehaviour
 
         newColour = (WalkerColourMode)laserColourIndex;
 
-        _laserColour = newColour;
+        LaserColour = newColour;
     }
 }
