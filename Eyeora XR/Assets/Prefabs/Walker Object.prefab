@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 4784159318050113695}
   - component: {fileID: 4784159318050113688}
   - component: {fileID: 4784159318050113689}
-  m_Layer: 0
-  m_Name: Walker
+  - component: {fileID: 6091698917359807357}
+  m_Layer: 6
+  m_Name: Walker Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4784159318050113690}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.69, y: 0, z: 3.45}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 94645ec1f73671647958297e4a5e50c5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,4 +111,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mode: 1
   _spline: {fileID: 0}
-  _duration: 7
+  _duration: 15
+--- !u!114 &6091698917359807357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4784159318050113690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d77d639d2750a44b98295d8394efc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _purple: {fileID: 2100000, guid: 94645ec1f73671647958297e4a5e50c5, type: 2}
+  _red: {fileID: 2100000, guid: 60dadcbeffd849444aa00d4f92e9c301, type: 2}
+  _green: {fileID: 2100000, guid: 6f1352b2694b5584fb96e038f7c5db8b, type: 2}
+  _mesh: {fileID: 4784159318050113695}
