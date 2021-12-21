@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6091698917359807357}
   m_Layer: 6
   m_Name: Walker Object
-  m_TagString: Untagged
+  m_TagString: Path Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
