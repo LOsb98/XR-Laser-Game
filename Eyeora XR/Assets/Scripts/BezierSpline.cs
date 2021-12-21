@@ -8,9 +8,9 @@ using System;
 /// </summary>
 public class BezierSpline : MonoBehaviour
 {
-    [SerializeField] private float _maxXPosition = 10;
-    [SerializeField] private float _maxYPosition = 10;
-    [SerializeField] private float _maxZPosition = 5;
+    private const float _maxXPosition = 10f;
+    private const float _maxYPosition = 4f;
+    private const float _maxZPosition = 3f;
 
     private bool _loop;
 
@@ -90,6 +90,9 @@ public class BezierSpline : MonoBehaviour
         }
         _points[index] = point;
         EnforceMode(index);
+
+        GetComponent<SplineDecorator>().ClearOldPath();
+        GetComponent<SplineDecorator>().DrawNewPath();
     }
 
     public void RandomizePoints()
@@ -99,9 +102,9 @@ public class BezierSpline : MonoBehaviour
         //Don't do this to the first and last points
         for (int i = 1; i < _points.Length; i++)
         {
-            float xPos = UnityEngine.Random.Range(0, _maxXPosition);
+            float xPos = UnityEngine.Random.Range(1, _maxXPosition);
             float yPos = UnityEngine.Random.Range(0, _maxYPosition);
-            float zPos = UnityEngine.Random.Range(-_maxZPosition, _maxZPosition);
+            float zPos = UnityEngine.Random.Range(-_maxZPosition + 2, _maxZPosition);
 
             Vector3 newPosition = new Vector3(xPos, yPos, zPos);
 
@@ -113,11 +116,13 @@ public class BezierSpline : MonoBehaviour
             else
             {
                 //Set final control point
-                Vector3 finalPointPos = new Vector3(_maxXPosition, 0, 0);
+                Vector3 finalPointPos = new Vector3(_maxXPosition + 2, 0, 0);
                 Debug.Log(finalPointPos);
                 SetControlPoint(i, finalPointPos);
             }
         }
+
+        GetComponent<SplineDecorator>().DrawNewPath();
     }
 
     public BezierControlPointMode GetControlPointMode (int index)
@@ -159,6 +164,11 @@ public class BezierSpline : MonoBehaviour
             BezierControlPointMode.Free,
             BezierControlPointMode.Free
         };
+
+        SplineDecorator decorator = GetComponent<SplineDecorator>();
+
+        decorator.ClearOldPath();
+        decorator.DrawNewPath();
     }
 
     public int CurveCount
