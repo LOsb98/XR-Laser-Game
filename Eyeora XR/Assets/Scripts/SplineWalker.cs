@@ -39,7 +39,8 @@ public class SplineWalker : MonoBehaviour
             {
                 if (_mode == SplineWalkerMode.Once)
                 {
-                    _progress = 1f;
+                    Destroy(gameObject);
+                    GameManager.Instance.RemainingLives--;
                 }
                 else if (_mode == SplineWalkerMode.Loop)
                 {
