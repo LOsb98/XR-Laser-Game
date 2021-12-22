@@ -18,6 +18,8 @@ public class ObjectSpawner : MonoBehaviour
 
     [SerializeField] private GameObject _objectPrefab;
 
+    [SerializeField] private Transform _spawnPosition;
+
     private float _objectSpawnDelay;
 
     private float _objectSpawnTimer;
@@ -50,7 +52,7 @@ public class ObjectSpawner : MonoBehaviour
 
     private void SpawnNewObject()
     {
-        GameObject newObject = Instantiate(_objectPrefab);
+        GameObject newObject = Instantiate(_objectPrefab, _spawnPosition.position, _spawnPosition.rotation);
 
         //Is there a way to do this without GetComponent?
         SplineWalker newObjectScript = newObject.GetComponent<SplineWalker>();
