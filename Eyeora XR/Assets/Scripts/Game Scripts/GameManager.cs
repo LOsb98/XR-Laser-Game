@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
         float newPathCompletionSpeed = 20 - (_currentLevel / 2);
         newPathCompletionSpeed = Mathf.Clamp(newPathCompletionSpeed, 5f, 20);
 
-        float newObjectDelay = 5 - (_currentLevel / 4);
+        float newObjectDelay = 5 - (_currentLevel / 3);
         newObjectDelay = Mathf.Clamp(newObjectDelay, 0.8f, 5f);
 
         _objectSpawner.InitializeObjectSpawner(newObjectDelay, newPathCompletionSpeed);
