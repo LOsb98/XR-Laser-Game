@@ -2319,6 +2319,8 @@ MonoBehaviour:
   _spline: {fileID: 678101156}
   _objectSpawner: {fileID: 270396334}
   _startingLives: 4
+  _baseStartingObjectDuration: 30
+  _baseObjectSpawnDelay: 4
   _livesText: {fileID: 938850374}
   _scoreText: {fileID: 1715572354}
   _finalScoreText: {fileID: 2090618838}
