@@ -8,6 +8,7 @@ using System;
 /// </summary>
 public class BezierSpline : MonoBehaviour
 {
+    //Would prefer to have these exposed in the inspector, but doesn't seem to work with this custom bezier inspector
     private const float _maxXPosition = 10f;
     private const float _maxYPosition = 4f;
     private const float _maxZPosition = 3f;
