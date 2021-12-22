@@ -68,16 +68,16 @@ public class PlayerFireRaycast : MonoBehaviour
         {
             Transform hitObject = laserRay.transform;
 
-            hitObject.GetComponent<WalkerController>().CheckColour(LaserColour);
+            if (hitObject.TryGetComponent<WalkerController>(out WalkerController controller))
+            {
+                controller.CheckColour(LaserColour);
+            }
+            else if (hitObject.TryGetComponent<ColourButton>(out ColourButton button))
+            {
+                LaserColour = button.GetNewColour();
+            }
         }
     }
 
-    public void SetLaserColour(int laserColourIndex)
-    {
-        WalkerColourMode newColour;
 
-        newColour = (WalkerColourMode)laserColourIndex;
-
-        LaserColour = newColour;
-    }
 }
