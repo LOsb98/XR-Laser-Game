@@ -12,6 +12,16 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int _startingLives;
 
+    /// <summary>
+    /// The initial amount of time it takes for an object to reach the end of the path
+    /// </summary>
+    [SerializeField] private float _baseStartingObjectDuration;
+
+    /// <summary>
+    /// The initial spawn delay between objects
+    /// </summary>
+    [SerializeField] private float _baseObjectSpawnDelay;
+
     [SerializeField] private Text _livesText;
 
     [SerializeField] private Text _scoreText;
@@ -113,11 +123,11 @@ public class GameManager : MonoBehaviour
         //Calculating values which will gradually increase difficulty
         RemainingObjects = 5 + _currentLevel;
 
-        float newPathCompletionSpeed = 20 - (_currentLevel / 2);
-        newPathCompletionSpeed = Mathf.Clamp(newPathCompletionSpeed, 5f, 20);
+        float newPathCompletionSpeed = _baseStartingObjectDuration - _currentLevel * 2;
+        newPathCompletionSpeed = Mathf.Clamp(newPathCompletionSpeed, 5f, _baseStartingObjectDuration);
 
-        float newObjectDelay = 5 - (_currentLevel / 3);
-        newObjectDelay = Mathf.Clamp(newObjectDelay, 0.8f, 5f);
+        float newObjectDelay = _baseObjectSpawnDelay - (_currentLevel / 2);
+        newObjectDelay = Mathf.Clamp(newObjectDelay, 0.8f, _baseObjectSpawnDelay);
 
         _objectSpawner.InitializeObjectSpawner(newObjectDelay, newPathCompletionSpeed);
 
