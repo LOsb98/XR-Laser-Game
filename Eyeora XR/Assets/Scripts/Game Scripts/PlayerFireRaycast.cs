@@ -49,14 +49,10 @@ public class PlayerFireRaycast : MonoBehaviour
 
     private void Update()
     {
-        if (Input.touchCount > 0)
+        //Replaced with mouse input for editor testing, normally check TouchCount/TouchPhase
+        if (Input.GetMouseButtonDown(0))
         {
-            Touch newTouch = Input.GetTouch(0);
-
-            if (newTouch.phase == TouchPhase.Began)
-            {
-                FireLaser();
-            }
+            FireLaser();
         }
     }
 
